@@ -2,6 +2,7 @@
 
 int main()
 {
-	AaronEngine::Application* app = new AaronEngine::Application();
+	App* app = new App();
 	app->Run();
+	delete app;
 }
