@@ -1,4 +1,5 @@
 #pragma once
+
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
@@ -11,8 +12,8 @@ namespace AaronEngine {
 		bool close;
 	public:
 		Window(int width, int height, const char* title);
-		Window();
 		~Window();
+
 		bool shouldClose();
 	};
 }

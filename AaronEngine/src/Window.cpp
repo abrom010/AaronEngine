@@ -3,8 +3,6 @@
 #include <iostream>
 
 namespace AaronEngine {
-	Window::Window() {}
-
 	Window::Window(int width, int height, const char* title)
 	{
 		glfwInit();
@@ -15,6 +13,7 @@ namespace AaronEngine {
 		this->window = glfwCreateWindow(width, height, title, NULL, NULL);
 		this->width = width;
 		this->height = height;
+		this->close = false;
 
 		if (this->window == NULL)
 		{
@@ -23,6 +22,12 @@ namespace AaronEngine {
 			this->close = true;
 		}
 		glfwMakeContextCurrent(this->window);
+
+		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+		{
+			std::cout << "Failed to initialize GLAD" << std::endl;
+			this->close = true;
+		}
 	}
 
 	Window::~Window()
@@ -32,6 +37,6 @@ namespace AaronEngine {
 
 	bool Window::shouldClose()
 	{
-		return close || glfwWindowShouldClose(this->window);
+		return this->close || glfwWindowShouldClose(this->window);
 	}
 }
