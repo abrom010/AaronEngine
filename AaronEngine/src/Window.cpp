@@ -39,4 +39,15 @@ namespace AaronEngine {
 	{
 		return this->close || glfwWindowShouldClose(this->window);
 	}
+
+	void Window::Update()
+	{
+		glfwSwapBuffers(this->window);
+		glfwPollEvents();
+	}
+
+	GLFWwindow* Window::GetWindow()
+	{
+		return this->window;
+	}
 }
