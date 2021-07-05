@@ -30,7 +30,7 @@
     <ClCompile Include="src\ShaderProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\VertexBuffer.cpp">
+    <ClCompile Include="src\VertexBufferObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Renderer.cpp">
@@ -42,13 +42,22 @@
     <ClCompile Include="src\VertexBufferLayout.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\VertexArray.cpp">
+    <ClCompile Include="src\VertexArrayObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\IndexBuffer.cpp">
+    <ClCompile Include="src\IndexBufferObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -932,7 +941,7 @@
     <ClInclude Include="src\ShaderProgram.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\VertexBuffer.h">
+    <ClInclude Include="src\VertexBufferObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Renderer.h">
@@ -944,13 +953,22 @@
     <ClInclude Include="src\VertexBufferLayout.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\VertexArray.h">
+    <ClInclude Include="src\VertexArrayObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\IndexBuffer.h">
+    <ClInclude Include="src\IndexBufferObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1375,5 +1393,7 @@
     <None Include="include\glm\gtx\wrap.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="shaders\basic.vertex" />
+    <None Include="shaders\basic.fragment" />
   </ItemGroup>
 </Project>

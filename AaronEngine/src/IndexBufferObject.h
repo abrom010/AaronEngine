@@ -4,16 +4,18 @@
 #include <GLFW/glfw3.h>
 
 namespace AaronEngine {
-	class VertexBuffer
+	class IndexBufferObject
 	{
 	private:
 		unsigned int id;
+		unsigned int indexCount;
 	public:
-		VertexBuffer();
-		~VertexBuffer();
+		IndexBufferObject();
+		~IndexBufferObject();
 
 		void Bind();
 		void Unbind();
 		void AttachData(const void* data, unsigned int size);
+		unsigned int GetIndexCount();
 	};
 }

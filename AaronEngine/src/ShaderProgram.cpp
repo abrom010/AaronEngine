@@ -9,7 +9,6 @@ namespace AaronEngine {
 	ShaderProgram::ShaderProgram()
 	{
 		this->id = glCreateProgram();
-		this->Unbind();
 	}
 
 	ShaderProgram::~ShaderProgram(){}
