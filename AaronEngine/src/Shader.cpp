@@ -29,7 +29,7 @@ namespace AaronEngine {
 		GLCall(glDeleteShader(this->id));
 	}
 
-	unsigned int Shader::getID()
+	unsigned int Shader::GetID()
 	{
 		return this->id;
 	}

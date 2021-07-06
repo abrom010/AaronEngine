@@ -1,8 +1,5 @@
 #pragma once
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
 #include "DebugOpenGL.h"
 
 #include <iostream>
@@ -27,7 +24,7 @@ namespace AaronEngine {
 		Shader(ShaderType shaderType);
 		~Shader();
 
-		unsigned int getID();
+		unsigned int GetID();
 		void AttachSourceFromFile(std::string filePath);
 		void AttachSourceFromString(std::string source);
 		void Compile();

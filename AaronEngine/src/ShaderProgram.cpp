@@ -25,8 +25,8 @@ namespace AaronEngine {
 
 	void ShaderProgram::AttachShaders(Shader& vertexShader, Shader& fragmentShader)
 	{
-		GLCall(glAttachShader(this->id, vertexShader.getID()));
-		GLCall(glAttachShader(this->id, fragmentShader.getID()));
+		GLCall(glAttachShader(this->id, vertexShader.GetID()));
+		GLCall(glAttachShader(this->id, fragmentShader.GetID()));
 		GLCall(glLinkProgram(this->id));
 		
 		int success;
@@ -38,7 +38,12 @@ namespace AaronEngine {
 			std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
 		}
 
-		GLCall(glDeleteShader(vertexShader.getID()));
-		GLCall(glDeleteShader(fragmentShader.getID()));
+		GLCall(glDeleteShader(vertexShader.GetID()));
+		GLCall(glDeleteShader(fragmentShader.GetID()));
+	}
+
+	unsigned int ShaderProgram::GetID()
+	{
+		return this->id;
 	}
 }

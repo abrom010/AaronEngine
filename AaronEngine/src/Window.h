@@ -1,9 +1,7 @@
 #pragma once
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
 #include "DebugOpenGL.h"
+#include <GLFW/glfw3.h>
 
 namespace AaronEngine {
 	class Window

@@ -51,12 +51,6 @@
     <ClCompile Include="src\IndexBufferObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Mesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -966,12 +960,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\IndexBufferObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Mesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Sprite.h">

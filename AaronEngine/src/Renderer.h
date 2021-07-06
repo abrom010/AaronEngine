@@ -1,8 +1,5 @@
 #pragma once
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
 #include "DebugOpenGL.h"
 
 #include <iostream>
@@ -11,7 +8,8 @@
 #include "VertexArrayObject.h"
 #include "IndexBufferObject.h"
 #include "ShaderProgram.h"
-#include "Model.h"
+//#include "Model.h"
+//#include "Mesh.h"
 
 
 namespace AaronEngine {
@@ -27,7 +25,8 @@ namespace AaronEngine {
 		void Clear();
 		void Update();
 		void DrawTriangle();
-		void DrawModel(Model model);
+		/*void DrawModel(Model model);
+		void DrawMesh(Mesh mesh);*/
 		
 		std::string basicVertexShader =
 			"#version 330 core\n"

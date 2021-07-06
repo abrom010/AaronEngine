@@ -14,11 +14,13 @@ int main()
 	AaronEngine::Renderer renderer(window);
 
 	renderer.SetBackgroundColor(0.0f, 0.0f, 0.0f, 1.0f);
+
+	//AaronEngine::Model model("mushroom.obj", false);
 	
 	while (!window.shouldClose())
 	{
 		renderer.Clear();
-		renderer.DrawTriangle();
+		
 		renderer.Update();
 	}
 }
