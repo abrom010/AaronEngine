@@ -8,8 +8,8 @@
 
 namespace AaronEngine {
 	Shader::Shader(ShaderType shaderType)
+		:shaderType(shaderType)
 	{
-		this->shaderType = shaderType;
 		GLuint type = NULL;
 		switch (shaderType)
 		{
@@ -21,12 +21,12 @@ namespace AaronEngine {
 			break;
 		}
 
-		this->id = glCreateShader(type);
+		GLCall(this->id = glCreateShader(type));
 	}
 
 	Shader::~Shader()
 	{
-		glDeleteShader(this->id);
+		GLCall(glDeleteShader(this->id));
 	}
 
 	unsigned int Shader::getID()
@@ -42,25 +42,25 @@ namespace AaronEngine {
 		std::cout << stringStream.str() << std::endl;
 		std::string string = stringStream.str();
 		const char* src = string.c_str();
-		glShaderSource(id, 1, &src, nullptr);
+		GLCall(glShaderSource(id, 1, &src, nullptr));
 	}
 
 	void Shader::AttachSourceFromString(std::string source)
 	{
 		const char* src = source.c_str();
-		glShaderSource(id, 1, &src, nullptr);
+		GLCall(glShaderSource(id, 1, &src, nullptr));
 	}
 
 	void Shader::Compile()
 	{
-		glCompileShader(this->id);
+		GLCall(glCompileShader(this->id));
 		int  success;
 		char infoLog[512];
-		glGetShaderiv(this->id, GL_COMPILE_STATUS, &success);
+		GLCall(glGetShaderiv(this->id, GL_COMPILE_STATUS, &success));
 
 		if (!success)
 		{
-			glGetShaderInfoLog(this->id, 512, NULL, infoLog);
+			GLCall(glGetShaderInfoLog(this->id, 512, NULL, infoLog));
 			std::string typeString;
 			if (this->shaderType == ShaderType::VERTEX)
 				typeString = "VERTEX";

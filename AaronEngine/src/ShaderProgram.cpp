@@ -8,39 +8,37 @@
 namespace AaronEngine {
 	ShaderProgram::ShaderProgram()
 	{
-		this->id = glCreateProgram();
+		GLCall(this->id = glCreateProgram());
 	}
 
 	ShaderProgram::~ShaderProgram(){}
 
 	void ShaderProgram::Bind()
 	{
-		glUseProgram(this->id);
+		GLCall(glUseProgram(this->id));
 	}
 
 	void ShaderProgram::Unbind()
 	{
-		glUseProgram(0);
+		GLCall(glUseProgram(0));
 	}
 
-	void ShaderProgram::AttachShaders(unsigned int vertexShaderID, unsigned int fragmentShaderID)
+	void ShaderProgram::AttachShaders(Shader& vertexShader, Shader& fragmentShader)
 	{
-		this->Bind();
-		glAttachShader(this->id, vertexShaderID);
-		glAttachShader(this->id, fragmentShaderID);
-		glLinkProgram(this->id);
+		GLCall(glAttachShader(this->id, vertexShader.getID()));
+		GLCall(glAttachShader(this->id, fragmentShader.getID()));
+		GLCall(glLinkProgram(this->id));
 		
 		int success;
 		char infoLog[512];
-		glGetProgramiv(this->id, GL_LINK_STATUS, &success);
+		GLCall(glGetProgramiv(this->id, GL_LINK_STATUS, &success));
 		if (!success)
 		{
-			glGetProgramInfoLog(this->id, 512, NULL, infoLog);
+			GLCall(glGetProgramInfoLog(this->id, 512, NULL, infoLog));
 			std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
 		}
 
-		glDeleteShader(vertexShaderID);
-		glDeleteShader(fragmentShaderID);
-		this->Unbind();
+		GLCall(glDeleteShader(vertexShader.getID()));
+		GLCall(glDeleteShader(fragmentShader.getID()));
 	}
 }

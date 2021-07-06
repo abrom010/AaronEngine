@@ -3,6 +3,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include "DebugOpenGL.h"
+
 #include <vector>
 
 namespace AaronEngine {
@@ -46,7 +48,7 @@ namespace AaronEngine {
 		template<>
 		void AddAttribute<char>(unsigned int count);
 
-		std::vector<Attribute> GetElements();
+		std::vector<Attribute> GetAttributes();
 		unsigned int GetStride();
 
 		void ApplyLayout();

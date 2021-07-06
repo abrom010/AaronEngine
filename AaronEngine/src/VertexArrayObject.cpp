@@ -3,29 +3,27 @@
 namespace AaronEngine {
 	VertexArrayObject::VertexArrayObject()
 	{
-		glGenVertexArrays(1, &this->id);
+		GLCall(glGenVertexArrays(1, &this->id));
 	}
 
 	VertexArrayObject::~VertexArrayObject()
 	{
-		glDeleteVertexArrays(1, &this->id);
+		GLCall(glDeleteVertexArrays(1, &this->id));
 	}
 
 	void VertexArrayObject::Bind()
 	{
-		glBindVertexArray(this->id);
+		GLCall(glBindVertexArray(this->id));
 	}
 
 	void VertexArrayObject::Unbind()
 	{
-		glBindVertexArray(0);
+		GLCall(glBindVertexArray(0));
 	}
 
 	void VertexArrayObject::AttachVertexBufferObject(VertexBufferObject& vbo, VertexBufferLayout& vbl)
 	{
-		this->Bind();
 		vbo.Bind();
 		vbl.ApplyLayout();
-		this->Unbind();
 	}
 }

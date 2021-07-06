@@ -2,8 +2,9 @@
 
 namespace AaronEngine {
 	VertexBufferLayout::VertexBufferLayout()
+		: stride(0)
 	{
-		this->stride = 0;
+		
 	}
 
 	template<>
@@ -27,7 +28,7 @@ namespace AaronEngine {
 		this->stride += count * Attribute::GetSizeOfType(GL_UNSIGNED_BYTE);
 	}
 
-	std::vector<VertexBufferLayout::Attribute> VertexBufferLayout::GetElements()
+	std::vector<VertexBufferLayout::Attribute> VertexBufferLayout::GetAttributes()
 	{
 		return attributes;
 	}
@@ -40,11 +41,13 @@ namespace AaronEngine {
 	void VertexBufferLayout::ApplyLayout()
 	{
 		unsigned int offset = 0;
-		for (int i = 0; i < this->attributes.size(); i++)
+		const auto& attribs = this->GetAttributes();
+		
+		for (unsigned int i = 0; i < attribs.size(); i++)
 		{
-			Attribute attribute = attributes[i];
-			glVertexAttribPointer(i, attribute.count, attribute.type, attribute.normalized, this->stride, (const void*)offset);
-			glEnableVertexAttribArray(i);
+			const auto& attribute = attribs[i];
+			GLCall(glVertexAttribPointer(i, attribute.count, attribute.type, attribute.normalized, this->GetStride(), (const void*)offset));
+			GLCall(glEnableVertexAttribArray(i));
 			offset += attribute.count * Attribute::GetSizeOfType(attribute.type);
 		}
 	}

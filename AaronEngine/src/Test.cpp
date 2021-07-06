@@ -13,11 +13,10 @@ int main()
 	AaronEngine::Window window(1280, 720, "Sandbox");
 	AaronEngine::Renderer renderer(window);
 
-	renderer.SetBackgroundColor(0.0f, 0.0f, 0.0f, 1.0f);
-	
+	//renderer.SetBackgroundColor(1.0f, 1.0f, 1.0f, 1.0f);
+
 	while (!window.shouldClose())
 	{
-		renderer.Clear();
 		renderer.DrawTriangle();
 		renderer.Update();
 	}

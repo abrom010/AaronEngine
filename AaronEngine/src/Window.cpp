@@ -4,6 +4,7 @@
 
 namespace AaronEngine {
 	Window::Window(int width, int height, const char* title)
+		: width(width), height(height), close(false)
 	{
 		glfwInit();
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -11,9 +12,6 @@ namespace AaronEngine {
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 		this->window = glfwCreateWindow(width, height, title, NULL, NULL);
-		this->width = width;
-		this->height = height;
-		this->close = false;
 
 		if (this->window == NULL)
 		{

@@ -3,6 +3,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include "DebugOpenGL.h"
+
 #include "VertexBufferObject.h"
 #include "VertexBufferLayout.h"
 
