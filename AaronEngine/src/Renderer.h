@@ -8,7 +8,7 @@
 #include "VertexArrayObject.h"
 #include "IndexBufferObject.h"
 #include "ShaderProgram.h"
-//#include "Model.h"
+#include "Model.h"
 //#include "Mesh.h"
 
 
@@ -25,8 +25,8 @@ namespace AaronEngine {
 		void Clear();
 		void Update();
 		void DrawTriangle();
-		/*void DrawModel(Model model);
-		void DrawMesh(Mesh mesh);*/
+		void DrawModel(Model& model);
+		//void DrawMesh(Mesh& mesh);
 		
 		std::string basicVertexShader =
 			"#version 330 core\n"

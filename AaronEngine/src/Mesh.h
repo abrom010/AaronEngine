@@ -9,16 +9,11 @@
 
 namespace AaronEngine {
     struct Vertex {
-        // position
-        glm::vec3 Position;
-        // normal
-        glm::vec3 Normal;
-        // texCoords
-        glm::vec2 TexCoords;
-        // tangent
-        glm::vec3 Tangent;
-        // bitangent
-        glm::vec3 Bitangent;
+        glm::vec3 position;
+        glm::vec3 normal;
+        glm::vec2 texCoords;
+        glm::vec3 tangent;
+        glm::vec3 bitangent;
     };
 
     struct Texture {
@@ -29,17 +24,11 @@ namespace AaronEngine {
 
 	class Mesh
 	{
-	private:
-
 	public:
         std::vector<Vertex> vertices;
         std::vector<unsigned int> indices;
         std::vector<Texture> textures;
-        unsigned int VAO;
 
 		Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures);
-		~Mesh();
-
-        void SetupMesh();
 	};
 }

@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+
+
 namespace AaronEngine {
 	Window::Window(int width, int height, const char* title)
 		: width(width), height(height), close(false)
