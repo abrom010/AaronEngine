@@ -26,7 +26,7 @@ namespace AaronEngine {
 		void Update();
 		void DrawTriangle();
 		void DrawModel(Model& model);
-		//void DrawMesh(Mesh& mesh);
+		void DrawMesh(Mesh& mesh);
 		
 		std::string basicVertexShader =
 			"#version 330 core\n"

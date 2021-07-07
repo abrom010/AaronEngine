@@ -8,16 +8,21 @@
 #include "ShaderProgram.h"
 #include "Shader.h"
 
-int main()
-{
-	AaronEngine::Window window(1280, 720, "Sandbox");
-	AaronEngine::Renderer renderer(window);
+#include "Model.h"
 
-	//renderer.SetBackgroundColor(1.0f, 1.0f, 1.0f, 1.0f);
-
-	while (!window.shouldClose())
-	{
-		renderer.DrawTriangle();
-		renderer.Update();
-	}
-}
+//int main()
+//{
+//	AaronEngine::Window window(1280, 720, "Sandbox");
+//	AaronEngine::Renderer renderer(window);
+//
+//	renderer.SetBackgroundColor(0.0f, 0.0f, 0.0f, 1.0f);
+//
+//	AaronEngine::Model model("mushroom.obj", false);
+//
+//	while (!window.shouldClose())
+//	{
+//		renderer.Clear();
+//		//renderer.DrawModel(model);
+//		renderer.Update();
+//	}
+//}

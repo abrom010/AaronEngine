@@ -60,12 +60,6 @@
     <ClCompile Include="src\Test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Mesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\stb_image.h">
@@ -1214,6 +1208,7 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="lib\glfw3.lib" />
+    <Library Include="lib\assimp.lib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="include\glm\detail\func_common.inl">
