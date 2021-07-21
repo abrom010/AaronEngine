@@ -6,25 +6,23 @@
 #include <iostream>
 
 namespace AaronEngine {
-	ShaderProgram::ShaderProgram()
-	{
+	ShaderProgram::ShaderProgram() {
 		GLCall(this->id = glCreateProgram());
 	}
 
-	ShaderProgram::~ShaderProgram(){}
+	ShaderProgram::~ShaderProgram() {
 
-	void ShaderProgram::Bind()
-	{
+	}
+
+	void ShaderProgram::Bind() {
 		GLCall(glUseProgram(this->id));
 	}
 
-	void ShaderProgram::Unbind()
-	{
+	void ShaderProgram::Unbind() {
 		GLCall(glUseProgram(0));
 	}
 
-	void ShaderProgram::AttachShaders(Shader& vertexShader, Shader& fragmentShader)
-	{
+	void ShaderProgram::AttachShaders(Shader& vertexShader, Shader& fragmentShader) {
 		GLCall(glAttachShader(this->id, vertexShader.GetID()));
 		GLCall(glAttachShader(this->id, fragmentShader.GetID()));
 		GLCall(glLinkProgram(this->id));
@@ -32,8 +30,7 @@ namespace AaronEngine {
 		int success;
 		char infoLog[512];
 		GLCall(glGetProgramiv(this->id, GL_LINK_STATUS, &success));
-		if (!success)
-		{
+		if (!success) {
 			GLCall(glGetProgramInfoLog(this->id, 512, NULL, infoLog));
 			std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
 		}
@@ -42,8 +39,7 @@ namespace AaronEngine {
 		GLCall(glDeleteShader(fragmentShader.GetID()));
 	}
 
-	unsigned int ShaderProgram::GetID()
-	{
+	unsigned int ShaderProgram::GetID() {
 		return this->id;
 	}
 }

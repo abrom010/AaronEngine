@@ -6,8 +6,7 @@
 #include <stb_image.h>
 
 namespace AaronEngine {
-	class Texture
-	{
+	class Texture {
 	private:
 		unsigned int id;
 		unsigned int textureUnit;

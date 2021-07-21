@@ -6,13 +6,9 @@
 #include <string>
 
 namespace AaronEngine {
-	class Shader
-	{
+	class Shader {
 	public:
-		static enum class ShaderType
-		{
-			VERTEX, FRAGMENT
-		};
+		static enum class ShaderType { VERTEX, FRAGMENT };
 
 	private:
 		unsigned int id;

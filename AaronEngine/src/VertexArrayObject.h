@@ -6,8 +6,7 @@
 #include "VertexBufferLayout.h"
 
 namespace AaronEngine {
-	class VertexArrayObject
-	{
+	class VertexArrayObject {
 	private:
 		unsigned int id;
 	public:

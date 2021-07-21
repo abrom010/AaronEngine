@@ -5,17 +5,14 @@
 #include <vector>
 
 namespace AaronEngine {
-	class VertexBufferLayout
-	{
+	class VertexBufferLayout {
 	public:
-		struct Attribute
-		{
+		struct Attribute {
 			unsigned int type;
 			unsigned int count;
 			unsigned char normalized;
 
-			static unsigned int GetSizeOfType(unsigned int type)
-			{
+			static unsigned int GetSizeOfType(unsigned int type) {
 				switch (type)
 				{
 				case GL_FLOAT:			return 4;

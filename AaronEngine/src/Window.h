@@ -4,8 +4,7 @@
 #include <GLFW/glfw3.h>
 
 namespace AaronEngine {
-	class Window
-	{
+	class Window {
 	private:
 		GLFWwindow* window;
 		int width, height;

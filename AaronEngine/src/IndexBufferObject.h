@@ -6,8 +6,7 @@
 #include "DebugOpenGL.h"
 
 namespace AaronEngine {
-	class IndexBufferObject
-	{
+	class IndexBufferObject {
 	private:
 		unsigned int id;
 		unsigned int indexCount;

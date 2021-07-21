@@ -3,8 +3,7 @@
 #include "DebugOpenGL.h"
 
 namespace AaronEngine {
-	class VertexBufferObject
-	{
+	class VertexBufferObject {
 	private:
 		unsigned int id;
 	public:
