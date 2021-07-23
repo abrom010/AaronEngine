@@ -76,5 +76,32 @@ namespace AaronEngine {
 			"{\n"
 			"FragColor = texture(texture_diffuse1, TexCoords);\n"
 			"}\n";
+
+		std::string spriteVertexShader =
+			"#version 330 core\n"
+			"layout (location = 0) in vec4 vertex; // <vec2 position, vec2 texCoords>\n"
+
+			"out vec2 TexCoords;\n"
+
+			"uniform mat4 model;\n"
+			"uniform mat4 projection;\n"
+
+			"void main()\n"
+			"{\n"
+			"TexCoords = vertex.zw;\n"
+			"gl_Position = projection * model * vec4(vertex.xy, 0.0, 1.0);\n"
+			"}\n";
+
+		std::string spriteFragmentShader =
+			"#version 330 core\n"
+			"in vec2 TexCoords;\n"
+			"out vec4 color;\n"
+
+			"uniform sampler2D image;\n"
+
+			"void main()\n"
+			"{\n"
+			"color = vec4(1.0, 1.0, 1.0, 1.0) * texture(image, TexCoords); \n"
+			"}\n";
 	};
 }

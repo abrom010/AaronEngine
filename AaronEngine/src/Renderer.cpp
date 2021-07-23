@@ -159,6 +159,82 @@ namespace AaronEngine {
 	}
 
 	void Renderer::DrawSprite(Sprite& sprite) {
+		unsigned int VAO, VBO;
+		float vertices[] = {
+			// pos      // tex
+			0.0f, 1.0f, 0.0f, 1.0f,
+			1.0f, 0.0f, 1.0f, 0.0f,
+			0.0f, 0.0f, 0.0f, 0.0f,
 
+			0.0f, 1.0f, 0.0f, 1.0f,
+			1.0f, 1.0f, 1.0f, 1.0f,
+			1.0f, 0.0f, 1.0f, 0.0f
+		};
+
+		glGenVertexArrays(1, &VAO);
+		glGenBuffers(1, &VBO);
+
+		glBindBuffer(GL_ARRAY_BUFFER, VBO);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+		glBindVertexArray(VAO);
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindVertexArray(0);
+
+
+		AaronEngine::Shader vertexShader(AaronEngine::Shader::ShaderType::VERTEX);
+		vertexShader.AttachSourceFromString(this->spriteVertexShader);
+		vertexShader.Compile();
+		AaronEngine::Shader fragmentShader(AaronEngine::Shader::ShaderType::FRAGMENT);
+		fragmentShader.AttachSourceFromString(this->spriteFragmentShader);
+		fragmentShader.Compile();
+
+		AaronEngine::ShaderProgram shaderProgram;
+		shaderProgram.AttachShaders(vertexShader, fragmentShader);
+		shaderProgram.Bind();
+		
+		glm::mat4 projection = glm::ortho(0.0f, (float)window.GetWidth(), (float)window.GetHeight(), 0.0f, -1.0f, 1.0f);
+		glm::mat4 model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(sprite.position.x, sprite.position.y, 0.0f));
+		model = glm::scale(model, glm::vec3(sprite.width, sprite.height, 1.0f));
+
+		GLCall(int modelUniform = glGetUniformLocation(shaderProgram.GetID(), "model"));
+		GLCall(int projectionUniform = glGetUniformLocation(shaderProgram.GetID(), "projection"));
+
+		GLCall(glUniformMatrix4fv(modelUniform, 1, GL_FALSE, &model[0][0]));
+		GLCall(glUniformMatrix4fv(projectionUniform, 1, GL_FALSE, &projection[0][0]));
+		/*this->shader.SetMatrix4("model", model);*/
+		//this->shader.SetVector3f("spriteColor", color);
+
+		unsigned int textureID;
+		glGenTextures(1, &textureID);
+
+		if (sprite.data) {
+			GLenum format;
+			if (sprite.nrComponents == 1)
+				format = GL_RED;
+			else if (sprite.nrComponents == 3)
+				format = GL_RGB;
+			else if (sprite.nrComponents == 4)
+				format = GL_RGBA;
+
+			glBindTexture(GL_TEXTURE_2D, textureID);
+			glTexImage2D(GL_TEXTURE_2D, 0, format, sprite.width, sprite.height, 0, format, GL_UNSIGNED_BYTE, sprite.data);
+			glGenerateMipmap(GL_TEXTURE_2D);
+
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+			glUniform1i(glGetUniformLocation(shaderProgram.GetID(), "image"), 0);
+		}
+		//texture.Bind();
+
+		glBindVertexArray(VAO);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+		glBindVertexArray(0);
 	}
 }
