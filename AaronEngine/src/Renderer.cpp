@@ -93,10 +93,10 @@ namespace AaronEngine {
 		glm::mat4 model = transform;
 
 		glm::mat4 view = glm::mat4(1.0);
-		view = glm::translate(view, glm::vec3(0, 0, -5));
+		view = glm::translate(view, glm::vec3(0, 0, -2.0f));
 		view = glm::rotate(view, 2 * 1.5708f, glm::vec3(0, 0, 1));
 
-		glm::mat4 projection = glm::perspective(30.0f, (GLfloat)window.GetWidth() / (GLfloat)window.GetHeight(), 1.0f, 100.0f);
+		glm::mat4 projection = glm::perspective(30.0f, (GLfloat)window.GetWidth() / (GLfloat)window.GetHeight(), 0.1f, 100.0f);
 
 		GLCall(glUniformMatrix4fv(modelUniform, 1, GL_FALSE, &model[0][0]));
 		GLCall(glUniformMatrix4fv(viewUniform, 1, GL_FALSE, &view[0][0]));
