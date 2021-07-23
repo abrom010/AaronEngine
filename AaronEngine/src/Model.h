@@ -18,7 +18,7 @@ namespace AaronEngine {
     class Model
     {
     public:
-        std::vector<Texture> textures_loaded;
+        std::vector<Mesh::Texture> textures_loaded;
         std::vector<Mesh> meshes;
         bool gammaCorrection;
         glm::mat4 transform;
@@ -91,12 +91,12 @@ namespace AaronEngine {
         }
 
         Mesh processMesh(aiMesh* mesh, const aiScene* scene) {
-            std::vector<Vertex> vertices;
+            std::vector<Mesh::Vertex> vertices;
             std::vector<unsigned int> indices;
-            std::vector<Texture> textures;
+            std::vector<Mesh::Texture> textures;
 
             for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
-                Vertex vertex;
+                Mesh::Vertex vertex;
                 glm::vec3 vector;
                 
                 vector.x = mesh->mVertices[i].x;
@@ -141,23 +141,23 @@ namespace AaronEngine {
             
             aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 
-            std::vector<Texture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
+            std::vector<Mesh::Texture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
             textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
 
-            std::vector<Texture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
+            std::vector<Mesh::Texture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
             textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
 
-            std::vector<Texture> normalMaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_normal");
+            std::vector<Mesh::Texture> normalMaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_normal");
             textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
 
-            std::vector<Texture> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
+            std::vector<Mesh::Texture> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
             textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 
             return Mesh(vertices, indices, textures);
         }
 
-        std::vector<Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName) {
-            std::vector<Texture> textures;
+        std::vector<Mesh::Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName) {
+            std::vector<Mesh::Texture> textures;
             for (unsigned int i = 0; i < mat->GetTextureCount(type); i++) {
                 aiString str;
                 mat->GetTexture(type, i, &str);
@@ -170,7 +170,7 @@ namespace AaronEngine {
                     }
                 }
                 if (!skip) {
-                    Texture texture;
+                    Mesh::Texture texture;
                     texture.id = TextureFromFile(str.C_Str(), directory, false);
                     texture.type = typeName;
                     texture.path = str.C_Str();

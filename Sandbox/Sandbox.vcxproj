@@ -91,17 +91,12 @@
     <ClCompile Include="src\Application.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AaronEngine\AaronEngine.vcxproj">
-      <Project>{9cedb90d-3190-4ed8-90cf-4a9c49fc5edb}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="chunky.fbm\chunkymaterial.png" />
-    <Image Include="chunkymaterial.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="assimp-vc142-mtd.dll" />
-    <None Include="chunky.mtl" />
+    <ProjectReference Include="..\AaronEngine\AaronEngine.vcxproj">
+      <Project>{cbe8939c-40e1-48a9-8a1d-9c501f483a40}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

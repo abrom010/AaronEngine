@@ -20,15 +20,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="chunkymaterial.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="chunky.fbm\chunkymaterial.png">
       <Filter>Resource Files</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="assimp-vc142-mtd.dll" />
-    <None Include="chunky.mtl" />
   </ItemGroup>
 </Project>
