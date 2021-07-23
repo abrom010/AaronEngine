@@ -96,7 +96,7 @@ namespace AaronEngine {
 		view = glm::translate(view, glm::vec3(0, 0, -5));
 		view = glm::rotate(view, 2 * 1.5708f, glm::vec3(0, 0, 1));
 
-		glm::mat4 projection = glm::perspective(30.0f, (GLfloat)1280 / (GLfloat)720, 1.0f, 100.0f);
+		glm::mat4 projection = glm::perspective(30.0f, (GLfloat)window.GetWidth() / (GLfloat)window.GetHeight(), 1.0f, 100.0f);
 
 		GLCall(glUniformMatrix4fv(modelUniform, 1, GL_FALSE, &model[0][0]));
 		GLCall(glUniformMatrix4fv(viewUniform, 1, GL_FALSE, &view[0][0]));
@@ -158,4 +158,7 @@ namespace AaronEngine {
 		glActiveTexture(GL_TEXTURE0);
 	}
 
+	void Renderer::DrawSprite(Sprite& sprite) {
+
+	}
 }

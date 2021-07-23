@@ -10,6 +10,7 @@
 #include "ShaderProgram.h"
 #include "Model.h"
 #include "Mesh.h"
+#include "Sprite.h"
 
 namespace AaronEngine {
 	class Renderer {
@@ -25,6 +26,7 @@ namespace AaronEngine {
 		void DrawTriangle();
 		void DrawModel(Model& model);
 		void DrawMesh(Mesh& mesh, glm::mat4 transform);
+		void DrawSprite(Sprite& sprite);
 		
 		std::string basicVertexShader =
 			"#version 330 core\n"

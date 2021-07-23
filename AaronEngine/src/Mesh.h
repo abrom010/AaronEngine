@@ -7,8 +7,6 @@
 #include <iostream>
 #include <vector>
 
-using namespace std;
-
 namespace AaronEngine {
     struct Vertex {
         glm::vec3 Position;
@@ -20,16 +18,16 @@ namespace AaronEngine {
 
     struct Texture {
         unsigned int id;
-        string type;
-        string path;
+        std::string type;
+        std::string path;
     };
 
     struct Mesh {
-        vector<Vertex> vertices;
-        vector<unsigned int> indices;
-        vector<Texture> textures;
+        std::vector<Vertex> vertices;
+        std::vector<unsigned int> indices;
+        std::vector<Texture> textures;
 
-        Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures) {
+        Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures) {
             this->vertices = vertices;
             this->indices = indices;
             this->textures = textures;

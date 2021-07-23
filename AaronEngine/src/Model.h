@@ -14,27 +14,26 @@
 
 #include "Mesh.h"
 
-
-using namespace std;
-
 namespace AaronEngine {
     class Model
     {
     public:
-        vector<Texture> textures_loaded;
-        vector<Mesh> meshes;
+        std::vector<Texture> textures_loaded;
+        std::vector<Mesh> meshes;
         bool gammaCorrection;
         glm::mat4 transform;
+        std::string directory;
 
-        Model(string const& path, bool gamma = false) : gammaCorrection(gamma) {
+        Model(std::string const& path, bool gamma = false) : gammaCorrection(gamma) {
+            directory = path.substr(0, path.find_last_of("/") + 1);
             loadModel(path);
             transform = glm::mat4(1.0f);
         }
 
     private:
-        unsigned int TextureFromFile(const char* path, bool gamma) {
-            string filename = string(path);
-            filename = filename;
+        unsigned int TextureFromFile(const char* path, const std::string& directory, bool gamma) {
+            std::string filename = std::string(path);
+            filename = directory + filename;
 
             unsigned int textureID;
             glGenTextures(1, &textureID);
@@ -69,11 +68,11 @@ namespace AaronEngine {
             return textureID;
         }
 
-        void loadModel(string const& path) {
+        void loadModel(std::string const& path) {
             Assimp::Importer importer;
             const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
             if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
-                cout << "ERROR::ASSIMP:: " << importer.GetErrorString() << endl;
+                std::cout << "ERROR::ASSIMP:: " << importer.GetErrorString() << std::endl;
                 return;
             }
 
@@ -92,9 +91,9 @@ namespace AaronEngine {
         }
 
         Mesh processMesh(aiMesh* mesh, const aiScene* scene) {
-            vector<Vertex> vertices;
-            vector<unsigned int> indices;
-            vector<Texture> textures;
+            std::vector<Vertex> vertices;
+            std::vector<unsigned int> indices;
+            std::vector<Texture> textures;
 
             for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
                 Vertex vertex;
@@ -142,10 +141,10 @@ namespace AaronEngine {
             
             aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 
-            vector<Texture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
+            std::vector<Texture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
             textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
 
-            vector<Texture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
+            std::vector<Texture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
             textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
 
             std::vector<Texture> normalMaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_normal");
@@ -157,8 +156,8 @@ namespace AaronEngine {
             return Mesh(vertices, indices, textures);
         }
 
-        vector<Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, string typeName) {
-            vector<Texture> textures;
+        std::vector<Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName) {
+            std::vector<Texture> textures;
             for (unsigned int i = 0; i < mat->GetTextureCount(type); i++) {
                 aiString str;
                 mat->GetTexture(type, i, &str);
@@ -172,7 +171,7 @@ namespace AaronEngine {
                 }
                 if (!skip) {
                     Texture texture;
-                    texture.id = TextureFromFile(str.C_Str(), false);
+                    texture.id = TextureFromFile(str.C_Str(), directory, false);
                     texture.type = typeName;
                     texture.path = str.C_Str();
                     textures.push_back(texture);

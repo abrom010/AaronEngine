@@ -40,4 +40,12 @@ namespace AaronEngine {
 	GLFWwindow* Window::GetWindow() {
 		return this->window;
 	}
+
+	int Window::GetWidth() {
+		return width;
+	}
+
+	int Window::GetHeight() {
+		return height;
+	}
 }

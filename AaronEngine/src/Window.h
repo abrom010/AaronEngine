@@ -16,5 +16,7 @@ namespace AaronEngine {
 		bool shouldClose();
 		void Update();
 		GLFWwindow* GetWindow();
+		int GetWidth();
+		int GetHeight();
 	};
 }
